@@ -1,0 +1,33 @@
+version: '3.1'
+
+services:
+  joomla:
+    image: joomla
+    restart: always
+    depends_on:
+      - dbos
+    ports:
+      - 8080:80
+    environment:
+      JOOMLA_DB_HOST: dbos
+      JOOMLA_DB_USER: arjun
+      JOOMLA_DB_PASSWORD: ROOT
+      JOOMLA_DB_NAME: mydb 
+    volumes:
+            - jom_storage_new:/var/www/html
+           
+
+  dbos:
+    image: mysql:5.6
+    restart: always
+    environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_USER: arjun
+            MYSQL_PASSWORD: ROOT
+            MYSQL_DATABASE: mydb
+    volumes:
+            - mysql_storage_new:/var/lib/mysql
+
+volumes:
+        mysql_storage_new:
+        jom_storage_new:
