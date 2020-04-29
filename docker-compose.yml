@@ -31,3 +31,4 @@ services:
 volumes:
         mysql_storage_new:
         jom_storage_new:
+
